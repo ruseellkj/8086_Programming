@@ -2,7 +2,7 @@ dosseg
 model small
 .8086
 
-;data 
+;data
 .data
 array db 02H,06H,07H,09H,01H
 smaller db 00H
