@@ -1,4 +1,4 @@
-42000 is the starting address
+;42000 is the starting address
 
 dosseg
 model small

@@ -8,7 +8,7 @@ model small
         MSG3 db 0DH, 0AH, "sum: $"
         MSG4 db 0DH, 0AH, "carry: $"
 
-        A DB ?
+        A DB ?                                          
         B DB ?
         SUM DB ?
         CARRY DB 00H
@@ -48,9 +48,6 @@ SKIP:   MOV SUM, AL
         LEA SI, CARRY
         CALL BAPUT8
 
-        MOV AH, 4CH ;end the program.... go back to dos
-        INT 21H
-
 ;subroutine that will be called when we want to write and want to see it
 PROC    BAGET8 ;gets an 8-bit number
         PUSH CX
@@ -87,7 +84,7 @@ PROC    BAPUT8
         CMP AL, 39H
         JLE P1
         ADD AL, 07H
-PI:     MOV AH, 02H
+P1:     MOV AH, 02H
         MOV DL, AL
         INT 21H
 
@@ -104,5 +101,10 @@ P2:     MOV AH, 02H
 
         RET
 ENDP    BAPUT8
+
+
+        MOV AH, 4CH ;end the program.... go back to dos
+        INT 21H
+END
 
 

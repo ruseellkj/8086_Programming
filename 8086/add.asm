@@ -1,4 +1,4 @@
-Program to add two 16-bit numbers in 8086/asm
+;Program to add two 16-bit numbers in 8086/asm
 
 
 dosseg
@@ -12,12 +12,12 @@ sum dw ?
 carry db 00H
 
 .code
-mov ax, @data
-mov ds, ax
-mov ax, a
-add ax ,b
-jnc skip
-inc carry
-skip : mov sum, ax
-int 03H
+        mov ax, @data
+        mov ds, ax
+        mov ax, a
+        add ax ,b
+        jnc skip
+        inc carry
+skip :  mov sum, ax
+        int 03H
 end
