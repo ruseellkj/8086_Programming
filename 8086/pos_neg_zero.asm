@@ -27,7 +27,7 @@ next :     inc si
            mov [si], bx
            mov [si], dl
            int 03h 
-           end
+end
 
 
 

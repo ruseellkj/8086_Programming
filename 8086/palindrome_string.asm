@@ -31,5 +31,6 @@ back:   cld
         jnz skip
         inc pal
 skip:   int 03H
-        end
+
+end
 
