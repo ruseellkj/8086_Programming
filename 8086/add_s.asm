@@ -46,6 +46,31 @@ BACK1:  MOV AH, 09H ;to get the space (return new line)
         JNZ BACK1
 
 
+CALC:   LEA SI, ARRN ; Calculate total (main prgm)
+        MOV CL, LEN
+        MOV AX, GT
+
+BACK2:  ADD AL, [SI]
+        JNC SKP2
+        INC AH
+SKP2:   INC SI
+        DEC CL
+        JNZ BACK2
+        MOV GT, AX
+        
+
+
+        MOV AH, 09H ;to display grand total
+        LEA DX, MSG3
+        INT 21H
+        LEA SI, GT
+        INC SI
+        CALL BAPUT8
+        DEC SI
+        CALL BAPUT8
+
+
+
         ;subroutine that will be called when we want to write and want to see it
 PROC    BAGET8 ;gets an 8-bit number
         PUSH CX
