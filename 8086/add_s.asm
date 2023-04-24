@@ -5,13 +5,12 @@ model small
 
 .data
         MSG1 db 0AH,0DH, "please enter the numbers: ... $"
-        MSG2 db 0AH,0DH ": $"
         MSG3 db 0AH,0DH,0AH,0DH, "grand total: $"
         MSGH1 db 0DH, 0AH, " $"
 
         ARRN DB 06 DUP (?)
         LEN DB 06H
-        GT DW 0000H
+        TOTAL DW 0000H
 
 .code 
         MOV AX, @data ;initialise data segment
@@ -39,7 +38,7 @@ BACK1:  MOV AH, 09H ;to get the space (return new line)
 
 CALC:   LEA SI, ARRN ; Calculate total (main prgm)
         MOV CL, LEN
-        MOV AX, GT
+        MOV AX, TOTAL
 
 BACK2:  ADD AL, [SI]
         JNC SKP2
@@ -47,13 +46,13 @@ BACK2:  ADD AL, [SI]
 SKP2:   INC SI
         DEC CL
         JNZ BACK2
-        MOV GT, AX
+        MOV TOTAL, AX
 
 
         MOV AH, 09H ;to display grand total
         LEA DX, MSG3
         INT 21H
-        LEA SI, GT
+        LEA SI, TOTAL
         INC SI
         CALL BAPUT8
         DEC SI
