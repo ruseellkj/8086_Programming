@@ -19,7 +19,7 @@ mul bx
 mov [si+0ch], ax
 mov [si+0eh], bx
 ;take p and s in ax and bx registers
-mov ax, [si+02h]
+mov ax, [s i+02h]
 mov bx, [si+06h]
 mul bx
 add ax, [si+0ah]

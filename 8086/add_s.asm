@@ -4,10 +4,10 @@ model small
 
 
 .data
-        MSGH1 db 0DH, 0AH, " $"
         MSG1 db 0AH,0DH, "please enter the numbers: ... $"
         MSG2 db 0AH,0DH ": $"
         MSG3 db 0AH,0DH,0AH,0DH, "grand total: $"
+        MSGH1 db 0DH, 0AH, " $"
 
         ARRN DB 06 DUP (?)
         LEN DB 06H
@@ -24,20 +24,11 @@ model small
         ;getting the series of numbers
         LEA SI, ARRN
         MOV CL, LEN
-        MOV BL, 01H ;used for writing 1: 2: 3: in the display
 
 
 BACK1:  MOV AH, 09H ;to get the space (return new line)
         LEA DX, MSGH1
         INT 21H
-        MOV AH, 02H ;to get numbers 1 2 3 4 before the actual number
-        MOV DL, AL
-        ADD DL, 30H ;write in ascii 
-        INT 21H
-        INC BL ;to inc number from 1 to 2 to 3 to 4....
-        MOV AH, 09H
-        LEA DX, MSG2
-        INT 21H 
 
         CALL BAGET8
         MOV [SI], AL
@@ -57,7 +48,6 @@ SKP2:   INC SI
         DEC CL
         JNZ BACK2
         MOV GT, AX
-        
 
 
         MOV AH, 09H ;to display grand total
