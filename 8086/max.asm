@@ -8,7 +8,7 @@ model small
        mov ax, 4000h
        mov ds, ax
        mov si, 2000h
-       mov cx, 000ah ;count of 100d
+       mov cx, 000ah ;count of 10d
        mov al , 00H
 back : cmp al , [si]
        jnc skip
